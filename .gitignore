@@ -1,4 +1,4 @@
-.env
-.py
-.json
-.txt
+*.env
+*.py
+*.json
+*.txt
