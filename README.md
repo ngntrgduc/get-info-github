@@ -1,0 +1,74 @@
+- [pomodoro](https://github.com/ngntrgduc/pomodoro) - Aesthetic, Minimalist Pomodoro
+    - Stars: **0**, Languague: **JavaScript**
+- [github-stats](https://github.com/ngntrgduc/github-stats) - My stats
+    - Stars: **0**, Languague: **Python**
+- [HCMUS-news-crawler](https://github.com/ngntrgduc/HCMUS-news-crawler) - Crawl https://hcmus.edu.vn/sinh-vien everyday using GitHub Actions. You can fork/watch this repo to see news update.
+    - Stars: **0**, Languague: **Python**
+- [ngntrgduc.github.io](https://github.com/ngntrgduc/ngntrgduc.github.io) - my space, crafted with Hugo
+    - Stars: **0**, Languague: **CSS**
+- [math.hcmus-crawler](https://github.com/ngntrgduc/math.hcmus-crawler) - Crawl https://math.hcmus.edu.vn/ everyday using GitHub Actions. You can watch this repo to see news update.
+    - Stars: **0**, Languague: **Python**
+- [ocean-beamer-theme](https://github.com/ngntrgduc/ocean-beamer-theme) - Feel the ocean 🌊. Simple, minimalistic and customizable beamer theme.
+    - Stars: **0**, Languague: **TeX**
+- [Dictionary-Look-Up](https://github.com/ngntrgduc/Dictionary-Look-Up) - Extension to look up words painlessly.
+    - Stars: **3**, Languague: **JavaScript**
+- [ngntrgduc](https://github.com/ngntrgduc/ngntrgduc)
+    - Stars: **0**, Languague: **None**
+- [old-blog](https://github.com/ngntrgduc/old-blog)
+    - Stars: **0**, Languague: **JavaScript**
+- [MTH10407-HCMUS](https://github.com/ngntrgduc/MTH10407-HCMUS) - Lập trình hướng đối tượng (OOP)
+    - Stars: **1**, Languague: **C++**
+- [awesome-math](https://github.com/ngntrgduc/awesome-math) - awesome-math fork for personal use. A curated list of awesome mathematics resources
+    - Stars: **0**, Languague: **Python**
+- [my-resume](https://github.com/ngntrgduc/my-resume) - My resume written in Latex
+    - Stars: **0**, Languague: **TeX**
+- [MTH10404-HCMUS](https://github.com/ngntrgduc/MTH10404-HCMUS) - Thực hành Lý thuyết thống kê
+    - Stars: **0**, Languague: **R**
+- [MTH10450-HCMUS](https://github.com/ngntrgduc/MTH10450-HCMUS) - Nội dung kiểm tra môn Thuật toán tối ưu, được viết bằng Typst
+    - Stars: **0**, Languague: **None**
+- [arxiv-utils](https://github.com/ngntrgduc/arxiv-utils) - Meaningful titles for tabs and PDF downloads! Also supports tab search.
+    - Stars: **0**, Languague: **JavaScript**
+- [deepmind-research](https://github.com/ngntrgduc/deepmind-research) - This repository contains implementations and illustrative code to accompany DeepMind publications
+    - Stars: **0**, Languague: **Jupyter Notebook**
+- [google-research](https://github.com/ngntrgduc/google-research) - Google Research
+    - Stars: **0**, Languague: **Jupyter Notebook**
+- [get-shit-done](https://github.com/ngntrgduc/get-shit-done) - No more procrastination
+    - Stars: **2**, Languague: **JavaScript**
+- [visualimiss](https://github.com/ngntrgduc/visualimiss) - visualize missing data
+    - Stars: **1**, Languague: **Python**
+- [toy-with-iris](https://github.com/ngntrgduc/toy-with-iris) - Implementation of some classification algorithms for iris dataset
+    - Stars: **0**, Languague: **Python**
+- [nvim-config](https://github.com/ngntrgduc/nvim-config) - My neovim config
+    - Stars: **0**, Languague: **Vim Script**
+- [HCMUS-GPA-bookmarklet](https://github.com/ngntrgduc/HCMUS-GPA-bookmarklet) - Tính GPA trên Portal thông qua bookmarklet
+    - Stars: **3**, Languague: **HTML**
+- [learning-python](https://github.com/ngntrgduc/learning-python) - Just my repo to learn python with colab
+    - Stars: **0**, Languague: **Jupyter Notebook**
+- [docs](https://github.com/ngntrgduc/docs) - Just my documentation
+    - Stars: **0**, Languague: **None**
+- [python-mini-projects](https://github.com/ngntrgduc/python-mini-projects) - Some mini projects written in Python
+    - Stars: **0**, Languague: **Jupyter Notebook**
+- [Flood-It](https://github.com/ngntrgduc/Flood-It) - Flood It game written in Python
+    - Stars: **0**, Languague: **Python**
+- [learn-everyday](https://github.com/ngntrgduc/learn-everyday) - A repo to write things I learned everyday.
+    - Stars: **0**, Languague: **None**
+- [MTH00087-HCMUS](https://github.com/ngntrgduc/MTH00087-HCMUS) - Thực hành phần mềm tính toán (MATLAB)
+    - Stars: **2**, Languague: **MATLAB**
+- [HCMUS-danh-gia-mon-hoc](https://github.com/ngntrgduc/HCMUS-danh-gia-mon-hoc) - Script giúp tự động đánh giá môn học trên Portal, giúp giảm gánh nặng cho đôi tay của bạn.
+    - Stars: **3**, Languague: **JavaScript**
+- [codewars-unfollow](https://github.com/ngntrgduc/codewars-unfollow) - Unfollow all of your allies/following on Codewars
+    - Stars: **0**, Languague: **Python**
+- [latex-template](https://github.com/ngntrgduc/latex-template)
+    - Stars: **0**, Languague: **TeX**
+- [learn4haskell](https://github.com/ngntrgduc/learn4haskell) - 👩‍🏫 👨‍🏫 Learn Haskell basics in 4 pull requests
+    - Stars: **0**, Languague: **Haskell**
+- [bio](https://github.com/ngntrgduc/bio) - My first website
+    - Stars: **0**, Languague: **HTML**
+- [ML](https://github.com/ngntrgduc/ML) - Đây là repo môn ML HCMUS
+    - Stars: **0**, Languague: **None**
+- [cmd_bot](https://github.com/ngntrgduc/cmd_bot)
+    - Stars: **0**, Languague: **Python**
+- [travel-plan](https://github.com/ngntrgduc/travel-plan) - Webdev Adventure 2022 - khongPhaiVozer
+    - Stars: **0**, Languague: **JavaScript**
+- [brainfck-interpreter](https://github.com/ngntrgduc/brainfck-interpreter)
+    - Stars: **0**, Languague: **C++**
