@@ -2,8 +2,8 @@
 | **Repository** | **Description** |
 | -------------- | --------------- |
 | **[github-stats](https://github.com/ngntrgduc/github-stats)**  | My stats |
-| **[math.hcmus-crawler](https://github.com/ngntrgduc/math.hcmus-crawler)**  | Crawl https://math.hcmus.edu.vn/ everyday using GitHub Actions. You can watch this repo to see news update. |
-| **[HCMUS-news-crawler](https://github.com/ngntrgduc/HCMUS-news-crawler)**  | Crawl https://hcmus.edu.vn/sinh-vien everyday using GitHub Actions. Fork/watch this repo to see news update. |
+| **[math.hcmus-crawler](https://github.com/ngntrgduc/math.hcmus-crawler)**  | Crawl https://math.hcmus.edu.vn/ every day using GitHub Actions. You can watch this repo to see news updates. |
+| **[HCMUS-news-crawler](https://github.com/ngntrgduc/HCMUS-news-crawler)**  | Crawl https://hcmus.edu.vn/sinh-vien every day using GitHub Actions. Fork/watch this repo to see news updates. View the latest commit of the README.md file for a quick update. |
 | **[pomodoro](https://github.com/ngntrgduc/pomodoro)**  | Aesthetic, Minimalist Pomodoro |
 | **[ngntrgduc.github.io](https://github.com/ngntrgduc/ngntrgduc.github.io)**  | My space, crafted with Hugo |
 | **[MTH10404-HCMUS](https://github.com/ngntrgduc/MTH10404-HCMUS)**  | Thực hành Lý thuyết thống kê |
