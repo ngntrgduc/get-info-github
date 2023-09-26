@@ -1,10 +1,8 @@
+# import json
 import requests
-import json
-import os
-from dotenv import load_dotenv
+from dotenv import dotenv_values
 
-load_dotenv()
-TOKEN = os.getenv('GITHUB_TOKEN')
+TOKEN = dotenv_values('.env')['GITHUB_TOKEN']
 username = 'ngntrgduc'
 url = f"https://api.github.com/users/{username}/repos"
 headers = {
