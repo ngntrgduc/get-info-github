@@ -83,20 +83,20 @@ class User:
 
         with open(file_name, 'w', encoding='utf-8') as f:
             f.write('### My starred repositories\n')
-            f.write('| **Repository** | **Stars** | **Language** | **Description** |\n')
-            f.write('| -------------- | --------- | ------------ | --------------- |\n')
+            f.write('| **Repository** | **Description** |\n')
+            f.write('| -------------- | --------------- |\n')
 
             for i in range(len(self.data)):
                 repo_name   = self.data[i]['full_name']
                 repo_url    = self.data[i]['html_url']
-                language    = self.data[i]['language']
+                # language    = self.data[i]['language']
                 description = self.data[i]['description']
                 stars       = self.data[i]['stargazers_count']
 
                 if not description:
                     description = ''
 
-                f.write(f'| **[{repo_name}]({repo_url})** | **{stars}** | *{language}* | {description}\n')
+                f.write(f'| **[{repo_name}]({repo_url})** \| ⭐ *{stars}* | {description}\n')
         pass
 
 def main():
