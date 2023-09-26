@@ -1,7 +1,8 @@
 | **Repository** | **Description** |
 | -------------- | --------------- |
+| **[projects](https://github.com/ngntrgduc/projects)**  | All my projects on GitHub. Crawled using GitHub API. |
 | **[github-stats](https://github.com/ngntrgduc/github-stats)**  | My stats |
-| **[math.hcmus-crawler](https://github.com/ngntrgduc/math.hcmus-crawler)**  | Crawl https://math.hcmus.edu.vn/ every day using GitHub Actions. You can watch this repo to see news updates. |
+| **[math.hcmus-crawler](https://github.com/ngntrgduc/math.hcmus-crawler)**  | Crawl https://math.hcmus.edu.vn/ every day using GitHub Actions. Fork/watch this repo to see news updates. |
 | **[HCMUS-news-crawler](https://github.com/ngntrgduc/HCMUS-news-crawler)**  | Crawl https://hcmus.edu.vn/sinh-vien every day using GitHub Actions. Fork/watch this repo to see news updates. View the latest commit of the README.md file for a quick update. |
 | **[pomodoro](https://github.com/ngntrgduc/pomodoro)**  | Aesthetic, Minimalist Pomodoro |
 | **[ngntrgduc.github.io](https://github.com/ngntrgduc/ngntrgduc.github.io)**  | My space, crafted with Hugo |
@@ -10,7 +11,6 @@
 | **[awesome-math](https://github.com/ngntrgduc/awesome-math)** (*fork*) | awesome-math fork for personal use. A curated list of awesome mathematics resources |
 | **[Dictionary-Look-Up](https://github.com/ngntrgduc/Dictionary-Look-Up)**  | Extension to look up words painlessly |
 | **[HCMUS-GPA-bookmarklet](https://github.com/ngntrgduc/HCMUS-GPA-bookmarklet)**  | Tính GPA trên Portal thông qua bookmarklet |
-| **[ngntrgduc](https://github.com/ngntrgduc/ngntrgduc)**  | My public profile |
 | **[learning-python](https://github.com/ngntrgduc/learning-python)**  | Just my repo to learn python with colab |
 | **[ocean-beamer-theme](https://github.com/ngntrgduc/ocean-beamer-theme)**  | Feel the ocean 🌊. Simple, minimalistic and customizable beamer theme. |
 | **[cv](https://github.com/ngntrgduc/cv)**  | My CV written in Latex |

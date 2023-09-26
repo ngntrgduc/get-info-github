@@ -23,6 +23,10 @@ data = requests.get(url, headers=headers, params=params).json()
 #     json.dump(result, f, indent=2)
 # data = json.load(open('result.json', 'r', encoding='utf-8'))
 
+# Ignore specific repo
+with open('ignore.txt', 'r', encoding='utf-8') as f:
+    ignore_repo = f.read().splitlines()
+
 with open('README.md', 'w', encoding='utf-8') as f:
     f.write('| **Repository** | **Description** |\n')
     f.write('| -------------- | --------------- |\n')
@@ -38,5 +42,8 @@ with open('README.md', 'w', encoding='utf-8') as f:
         fork = '(*fork*)' if fork else ''
         if not description:
             description = ''
+        
+        if repo_name in ignore_repo:
+            continue
 
         f.write(f'| **[{repo_name}]({repo_url})** {fork} | {description} |\n')

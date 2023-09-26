@@ -21,5 +21,5 @@ And here be dragons 🐉.
 For more information, visit: https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-repositories-for-a-user
 
 ### TODO
-- [ ] `Ignore` repo lists
+- [x] `Ignore` repo lists
 - [ ] (*WIP*) Starred repo crawler
