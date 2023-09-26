@@ -1,4 +1,3 @@
-### My projects
 | **Repository** | **Description** |
 | -------------- | --------------- |
 | **[github-stats](https://github.com/ngntrgduc/github-stats)**  | My stats |
