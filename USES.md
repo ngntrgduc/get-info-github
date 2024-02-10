@@ -4,6 +4,11 @@ I often find myself being lost when visiting someone's repositories. If that use
 
 **PS**: I made this to view repositories of other accounts. But then I realized this can be used for personal.
 
+### Features
+- Get all repo
+- Get starred repo
+- Get all gists
+
 ### How to use?
 - Install requirements:
     ```python
