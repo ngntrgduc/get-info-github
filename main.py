@@ -22,11 +22,13 @@ class User:
         """Get data from GitHub API"""
         
         if not all:
-            self.data = requests.get(self.url, headers=self.headers, params=self.params).json()
+            self.data = requests.get(self.url, headers=self.headers, 
+                                     params=self.params).json()
         else:
             self.data = []
             while True:
-                data = requests.get(self.url, headers=self.headers, params=self.params).json()
+                data = requests.get(self.url, headers=self.headers, 
+                                    params=self.params).json()
                 if not data:
                     break
                 self.params['page'] += 1
@@ -46,7 +48,8 @@ class User:
 
         return ignore_repo
     
-    def get_repositories(self, file_name: str = 'README.md', ignore: bool = True, all: bool = False) -> None:
+    def get_repositories(self, file_name: str = 'README.md', 
+                         ignore: bool = True, all: bool = False) -> None:
         """Get repositories of user"""
 
         self.get_data(all)
@@ -59,8 +62,8 @@ class User:
             f.write('| -------------- | --------------- |\n')
 
             for i in range(len(self.data)):
-                repo_name   = self.data[i]['name']
-                repo_url    = self.data[i]['html_url']
+                name        = self.data[i]['name']
+                url         = self.data[i]['html_url']
                 description = self.data[i]['description']
                 fork        = self.data[i]['fork']
                 # stars       = self.data[i]['stargazers_count']
@@ -70,12 +73,13 @@ class User:
                 if not description:
                     description = ''
                 
-                if repo_name in ignore_repo:
+                if name in ignore_repo:
                     continue
 
-                f.write(f'| **[{repo_name}]({repo_url})** {fork} | {description} |\n')
+                f.write(f'| **[{name}]({url})** {fork} | {description} |\n')
 
-    def get_starred(self, file_name: str = 'STARRED.md', all: bool = False) -> None:
+    def get_starred(self, file_name: str = 'STARRED.md', 
+                    all: bool = False) -> None:
         """Get starred repositories of user"""
 
         self.url = f'https://api.github.com/users/{self.username}/starred'
@@ -87,8 +91,8 @@ class User:
             f.write('| -------------- | --------------- |\n')
 
             for i in range(len(self.data)):
-                repo_name   = self.data[i]['full_name']
-                repo_url    = self.data[i]['html_url']
+                name        = self.data[i]['full_name']
+                url         = self.data[i]['html_url']
                 # language    = self.data[i]['language']
                 description = self.data[i]['description']
                 stars       = self.data[i]['stargazers_count']
@@ -96,14 +100,36 @@ class User:
                 if not description:
                     description = ''
 
-                f.write(f'| **[{repo_name}]({repo_url})** \| ⭐ *{stars}* | {description}\n')
-        pass
+                f.write(f'| **[{name}]({url})** \| ⭐ *{stars}* | {description}\n')
+    
+    def get_gists(self, file_name: str = 'GISTS.md', 
+                  all: bool = False) -> None:
+        """Get all gists of user"""
+
+        self.url = f'https://api.github.com/gists'
+        self.get_data(all)
+
+        with open(file_name, 'w', encoding='utf-8') as f:
+            f.write('### My gists\n')
+            f.write('| **Gist name** | **Description** |\n')
+            f.write('| ------------- | --------------- |\n')
+
+            for i in range(len(self.data)):
+                name        = list(self.data[i]['files'])[0]
+                url         = self.data[i]['html_url']
+                description = self.data[i]['description']
+
+                if not description:
+                    description = ''
+
+                f.write(f'| **[{name}]({url})** | {description} |\n')
+ 
 
 def main():
     user = User('ngntrgduc')
     user.get_repositories()
     user.get_starred()
-    pass
+    user.get_gists()
 
 if __name__ == '__main__':
     main()
