@@ -8,7 +8,7 @@
 | **[mlco2/impact](https://github.com/mlco2/impact)** \| ⭐ *172* | ML has an impact on the climate. But not all models are born equal. Compute your model's emissions with our calculator and add the results to your paper with our generated latex template
 | **[google-deepmind/alphageometry](https://github.com/google-deepmind/alphageometry)** \| ⭐ *3268* | 
 | **[ngnquanq/NLP_Final](https://github.com/ngnquanq/NLP_Final)** \| ⭐ *2* | NLP 
-| **[ollama/ollama](https://github.com/ollama/ollama)** \| ⭐ *36764* | Get up and running with Llama 2, Mistral, and other large language models locally.
+| **[ollama/ollama](https://github.com/ollama/ollama)** \| ⭐ *36765* | Get up and running with Llama 2, Mistral, and other large language models locally.
 | **[oxalorg/sakura](https://github.com/oxalorg/sakura)** \| ⭐ *3955* | :cherry_blossom: a minimal css framework/theme.
 | **[timothybrooks/instruct-pix2pix](https://github.com/timothybrooks/instruct-pix2pix)** \| ⭐ *5661* | 
 | **[lllyasviel/Fooocus](https://github.com/lllyasviel/Fooocus)** \| ⭐ *30665* | Focus on prompting and generating
@@ -21,7 +21,7 @@
 | **[mitmath/computational-thinking](https://github.com/mitmath/computational-thinking)** \| ⭐ *2505* | Course 18.S191 at MIT, Fall 2022 - Introduction to computational thinking with Julia
 | **[espanso/espanso](https://github.com/espanso/espanso)** \| ⭐ *8798* | Cross-platform Text Expander written in Rust
 | **[lucidrains/x-transformers](https://github.com/lucidrains/x-transformers)** \| ⭐ *3891* | A simple but complete full-attention transformer with a set of promising experimental features from various papers
-| **[lucidrains/vit-pytorch](https://github.com/lucidrains/vit-pytorch)** \| ⭐ *16913* | Implementation of Vision Transformer, a simple way to achieve SOTA in vision classification with only a single transformer encoder, in Pytorch
+| **[lucidrains/vit-pytorch](https://github.com/lucidrains/vit-pytorch)** \| ⭐ *16915* | Implementation of Vision Transformer, a simple way to achieve SOTA in vision classification with only a single transformer encoder, in Pytorch
 | **[sebastianruder/NLP-progress](https://github.com/sebastianruder/NLP-progress)** \| ⭐ *22159* | Repository to track the progress in Natural Language Processing (NLP), including the datasets and the current state-of-the-art for the most common NLP tasks.
 | **[karpathy/llama2.c](https://github.com/karpathy/llama2.c)** \| ⭐ *14171* | Inference Llama 2 in one file of pure C
 | **[Lightning-AI/pytorch-lightning](https://github.com/Lightning-AI/pytorch-lightning)** \| ⭐ *26185* | Pretrain, finetune and deploy AI models on multiple GPUs, TPUs with zero code changes.
@@ -72,7 +72,7 @@
 | **[jina-ai/discoart](https://github.com/jina-ai/discoart)** \| ⭐ *3840* | 🪩 Create Disco Diffusion artworks in one line
 | **[borisdayma/dalle-mini](https://github.com/borisdayma/dalle-mini)** \| ⭐ *14530* | DALL·E Mini - Generate images from a text prompt
 | **[HumanSignal/label-studio](https://github.com/HumanSignal/label-studio)** \| ⭐ *15571* | Label Studio is a multi-type data labeling and annotation tool with standardized output format
-| **[lucidrains/imagen-pytorch](https://github.com/lucidrains/imagen-pytorch)** \| ⭐ *7626* | Implementation of Imagen, Google's Text-to-Image Neural Network, in Pytorch
+| **[lucidrains/imagen-pytorch](https://github.com/lucidrains/imagen-pytorch)** \| ⭐ *7627* | Implementation of Imagen, Google's Text-to-Image Neural Network, in Pytorch
 | **[lucidrains/DALLE2-pytorch](https://github.com/lucidrains/DALLE2-pytorch)** \| ⭐ *10624* | Implementation of DALL-E 2, OpenAI's updated text-to-image synthesis neural network,  in Pytorch
 | **[fastai/numerical-linear-algebra](https://github.com/fastai/numerical-linear-algebra)** \| ⭐ *9882* | Free online textbook of Jupyter notebooks for fast.ai Computational Linear Algebra course
 | **[labmlai/annotated_deep_learning_paper_implementations](https://github.com/labmlai/annotated_deep_learning_paper_implementations)** \| ⭐ *43272* | 🧑‍🏫 60 Implementations/tutorials of deep learning papers with side-by-side notes 📝; including transformers (original, xl, switch, feedback, vit, ...), optimizers (adam, adabelief, sophia, ...), gans(cyclegan, stylegan2, ...), 🎮 reinforcement learning (ppo, dqn), capsnet, distillation, ... 🧠
