@@ -6,3 +6,5 @@
 archive*
 crawled*
 test*
+__pycache__
+*log
