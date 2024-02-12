@@ -123,13 +123,23 @@ class User:
                     description = ''
 
                 f.write(f'| **[{name}]({url})** | {description} |\n')
- 
 
-def main():
-    user = User('ngntrgduc')
-    user.get_repositories()
-    user.get_starred()
-    user.get_gists()
+def create_folder(name):
+    from pathlib import Path
+    Path(name).mkdir()
+
+def main(name, folder=''):
+    if folder:
+        create_folder(name)
+
+    user = User(name)
+    user.get_repositories(f'{folder}/README.md')
+    user.get_starred(f'{folder}/STARRED.md')
+    user.get_gists(f'{folder}/GISTS.md')
 
 if __name__ == '__main__':
-    main()
+    from time import perf_counter
+    name = 'ngntrgduc'
+    tic = perf_counter()
+    main(name)
+    print(f'Took {perf_counter() - tic:.2f}s to crawl for user {name}')
