@@ -1,9 +1,9 @@
 | **Repository** | **Description** |
 | -------------- | --------------- |
+| **[projects](https://github.com/ngntrgduc/projects)**  | All my projects/starred/gists on GitHub. Crawled using GitHub API. |
 | **[Multiple-links-loader](https://github.com/ngntrgduc/Multiple-links-loader)**  | Extension that open multiple links in a flash ⚡ |
 | **[Dictionary-Look-Up](https://github.com/ngntrgduc/Dictionary-Look-Up)**  | Extension to look up words painlessly |
 | **[github-stats](https://github.com/ngntrgduc/github-stats)**  | My stats |
-| **[projects](https://github.com/ngntrgduc/projects)**  | All my projects/starred/gists on GitHub. Crawled using GitHub API. |
 | **[pomodoro](https://github.com/ngntrgduc/pomodoro)**  | Aesthetic, Minimalist Pomodoro |
 | **[HCMUS-news-crawler](https://github.com/ngntrgduc/HCMUS-news-crawler)**  | Crawl https://hcmus.edu.vn/tin-tuc/ and http://ktdbcl.hcmus.edu.vn every day using GitHub Actions. Fork/watch this repo to see news updates. View the latest commit of the README.md file for a quick update. |
 | **[HCMUS-danh-gia-mon-hoc](https://github.com/ngntrgduc/HCMUS-danh-gia-mon-hoc)**  | Script giúp tự động đánh giá môn học trên Portal, giúp giảm gánh nặng cho đôi tay của bạn |
