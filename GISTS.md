@@ -7,4 +7,4 @@
 | **[telex_converter.js](https://gist.github.com/ngntrgduc/4d920d97c60bf246d44c00b84215bf86)** | Script chuyển đổi chuỗi từ dạng TELEX sang dạng Tiếng Việt |
 | **[open-in-colab.js](https://gist.github.com/ngntrgduc/ee051cae8d3312c7ec636bc1585763b1)** | Open in Colab bookmarklet for GitHub |
 | **[git.py](https://gist.github.com/ngntrgduc/db0c51724b1db505326b6564d21c731b)** |  |
-| **[vimium-options.js](https://gist.github.com/ngntrgduc/56466d9bb66b2d2a7a27d42442a99850)** |  |
+| **[vimium-options.js](https://gist.github.com/ngntrgduc/56466d9bb66b2d2a7a27d42442a99850)** | My settings for Vimium |
