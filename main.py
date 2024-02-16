@@ -133,9 +133,9 @@ def main(name, folder=''):
         create_folder(name)
 
     user = User(name)
-    user.get_repositories(f'{folder}/README.md')
-    user.get_starred(f'{folder}/STARRED.md')
-    user.get_gists(f'{folder}/GISTS.md')
+    user.get_repositories('README.md')
+    user.get_starred('STARRED.md')
+    user.get_gists('GISTS.md')
 
 if __name__ == '__main__':
     from time import perf_counter
