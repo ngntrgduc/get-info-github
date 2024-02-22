@@ -1,12 +1,12 @@
 | **Repository** | **Description** |
 | -------------- | --------------- |
+| **[projects](https://github.com/ngntrgduc/projects)**  | All my projects/starred/gists on GitHub. Crawled using GitHub API. |
 | **[MTH10439-HCMUS](https://github.com/ngntrgduc/MTH10439-HCMUS)**  | Numerical Linear Algebra |
 | **[python-mini-projects](https://github.com/ngntrgduc/python-mini-projects)**  | Some mini projects written in Python |
 | **[learning-python](https://github.com/ngntrgduc/learning-python)**  | Just my repo to learn python with colab |
 | **[HCMUS-news-crawler](https://github.com/ngntrgduc/HCMUS-news-crawler)**  | Crawl https://hcmus.edu.vn/tin-tuc/ and http://ktdbcl.hcmus.edu.vn every day using GitHub Actions. Fork/watch this repo to see news updates. View the latest commit of the README.md file for a quick update. |
 | **[math.hcmus-crawler](https://github.com/ngntrgduc/math.hcmus-crawler)**  | Crawl https://math.hcmus.edu.vn/ every day using GitHub Actions. Fork/watch this repo to see news updates. |
 | **[Multiple-links-loader](https://github.com/ngntrgduc/Multiple-links-loader)**  | Extension that open multiple links in a flash ⚡ |
-| **[projects](https://github.com/ngntrgduc/projects)**  | All my projects/starred/gists on GitHub. Crawled using GitHub API. |
 | **[github-stats](https://github.com/ngntrgduc/github-stats)**  | My stats |
 | **[awesome-math](https://github.com/ngntrgduc/awesome-math)** (*fork*) | awesome-math fork for personal use. A curated list of awesome mathematics resources |
 | **[ngntrgduc.github.io](https://github.com/ngntrgduc/ngntrgduc.github.io)**  | My space, crafted with Hugo |
