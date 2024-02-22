@@ -130,16 +130,18 @@ def create_folder(name):
 
 def main(name, folder=''):
     if folder:
-        create_folder(name)
+        assert folder[-1] == '/', 'Folder name must include / at the end'
+        create_folder(folder)
 
     user = User(name)
-    user.get_repositories('README.md')
-    user.get_starred('STARRED.md')
-    user.get_gists('GISTS.md')
+    user.get_repositories(f'{folder}README.md')
+    user.get_starred(f'{folder}STARRED.md')
+    user.get_gists(f'{folder}GISTS.md')
 
 if __name__ == '__main__':
     from time import perf_counter
     name = 'ngntrgduc'
     tic = perf_counter()
     main(name)
+    # main(name, f'{name}')
     print(f'Took {perf_counter() - tic:.2f}s to crawl for user {name}')
