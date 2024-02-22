@@ -1,6 +1,7 @@
 import json
 import requests
 from dotenv import dotenv_values
+from utils import format_stars
 
 class User:
     def __init__(self, username: str) -> None:
@@ -96,6 +97,7 @@ class User:
                 # language    = self.data[i]['language']
                 description = self.data[i]['description']
                 stars       = self.data[i]['stargazers_count']
+                stars       = format_stars(stars)
 
                 if not description:
                     description = ''
