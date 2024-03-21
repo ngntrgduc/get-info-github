@@ -8,7 +8,7 @@ I first made this to view other accounts, but then I realized that I could use t
 
 ### Features
 - Get all repositories, starred, gists
-- Crawled result to a directory if provide
+- Crawled result to a folder if provided (Default is `data/<github-username>`)
 - Ignore specific repositories in `ignore.txt`
 
 ### How to use?
