@@ -1,5 +1,6 @@
 import json
 import requests
+from pathlib import Path
 from dotenv import dotenv_values
 from utils import format_stars
 
@@ -127,8 +128,9 @@ class User:
                 f.write(f'| **[{name}]({url})** | {description} |\n')
 
 def create_folder(name):
-    from pathlib import Path
-    Path(name).mkdir()
+    folder = Path(name)
+    if not folder.exists():
+        folder.mkdir()
 
 def main(name, folder=''):
     if folder:
@@ -144,6 +146,6 @@ if __name__ == '__main__':
     from time import perf_counter
     name = 'ngntrgduc'
     tic = perf_counter()
-    main(name)
-    # main(name, f'{name}/')
+    # main(name)
+    main(name, f'data/{name}/')
     print(f'Took {perf_counter() - tic:.2f}s to crawl for {name}')
