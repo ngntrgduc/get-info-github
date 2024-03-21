@@ -108,7 +108,7 @@ class User:
                   all: bool = False) -> None:
         """Get all gists of user"""
 
-        self.url = f'https://api.github.com/gists'
+        self.url = f'https://api.github.com/users/{self.username}/gists'
         self.get_data(all)
 
         with open(file_name, 'w', encoding='utf-8') as f:
@@ -145,5 +145,5 @@ if __name__ == '__main__':
     name = 'ngntrgduc'
     tic = perf_counter()
     main(name)
-    # main(name, f'{name}')
-    print(f'Took {perf_counter() - tic:.2f}s to crawl for user {name}')
+    # main(name, f'{name}/')
+    print(f'Took {perf_counter() - tic:.2f}s to crawl for {name}')
