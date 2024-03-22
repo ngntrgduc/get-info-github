@@ -127,12 +127,12 @@ class User:
 
                 f.write(f'| **[{name}]({url})** | {description} |\n')
 
-def create_folder(name):
+def create_folder(name: str) -> None:
     folder = Path(name)
     if not folder.exists():
         folder.mkdir()
 
-def main(name, folder=''):
+def main(name: str, folder: str = '') -> None:
     if folder:
         assert folder[-1] == '/', 'Folder name must include / at the end'
         create_folder(folder)
@@ -146,6 +146,8 @@ if __name__ == '__main__':
     from time import perf_counter
     name = 'ngntrgduc'
     tic = perf_counter()
-    # main(name)
-    main(name, f'data/{name}/')
+    
+    main(name)
+    # main(name, f'data/{name}/') # crawled result in a folder
+    
     print(f'Took {perf_counter() - tic:.2f}s to crawl for {name}')

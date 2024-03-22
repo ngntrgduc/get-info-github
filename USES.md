@@ -16,12 +16,13 @@ I first made this to view other accounts, but then I realized that I could use t
     ```python
     pip install requests python-dotenv
     ```
-- Create GitHub Token, with `repo` scope.
+- Create GitHub Token, with `repo` scope
 - Create a `.env` file, and put the token in:
     ```
     GITHUB_TOKEN = <your_token_here>    
     ```
-- Run `main.py`.
+- Create folder `data` if you want crawled result in a folder
+- Run `main.py`
 
 If you want to ignore specific repositories: Create a `ignore.txt` file, and write the name of the repositories you want to ignore, separated by line.
 
