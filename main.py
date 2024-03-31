@@ -19,29 +19,29 @@ class User:
             "per_page": 100,
             "page": 1,
         }
-    
+
     def get_data(self, all: bool = False) -> None:
         """Get data from GitHub API"""
-        
+
         if not all:
-            self.data = requests.get(self.url, headers=self.headers, 
+            self.data = requests.get(self.url, headers=self.headers,
                                      params=self.params).json()
         else:
             self.data = []
             while True:
-                data = requests.get(self.url, headers=self.headers, 
+                data = requests.get(self.url, headers=self.headers,
                                     params=self.params).json()
                 if not data:
                     break
                 self.params['page'] += 1
                 self.data += data
-    
+
     def backup(self, file_name: str = 'result.json') -> None:
         """Write a backup to file"""
 
         with open(file_name, 'w', encoding='utf-8') as f:
             json.dump(self.data, f, indent=2)
-    
+
     def get_ignore(self, file_name: str = 'ignore.txt'):
         """Get ignore repo from file"""
 
@@ -49,13 +49,14 @@ class User:
             ignore_repo = f.read().splitlines()
 
         return ignore_repo
-    
-    def get_repositories(self, file_name: str = 'README.md', 
+
+    def get_repositories(self, file_name: str = 'README.md',
                          ignore: bool = True, all: bool = False) -> None:
         """Get repositories of user"""
 
+        print('Getting repositories...')
         self.get_data(all)
-        
+
         if ignore:
             ignore_repo = self.get_ignore()
 
@@ -74,16 +75,17 @@ class User:
                 fork = '(*fork*)' if fork else ''
                 if not description:
                     description = ''
-                
+
                 if name in ignore_repo:
                     continue
 
                 f.write(f'| **[{name}]({url})** {fork} | {description} |\n')
 
-    def get_starred(self, file_name: str = 'STARRED.md', 
+    def get_starred(self, file_name: str = 'STARRED.md',
                     all: bool = False) -> None:
         """Get starred repositories of user"""
 
+        print('Getting starred...')
         self.url = f'https://api.github.com/users/{self.username}/starred'
         self.get_data(all)
 
@@ -104,11 +106,12 @@ class User:
                     description = ''
 
                 f.write(f'| **[{name}]({url})** \| ⭐ *{stars}* | {description}\n')
-    
-    def get_gists(self, file_name: str = 'GISTS.md', 
+
+    def get_gists(self, file_name: str = 'GISTS.md',
                   all: bool = False) -> None:
         """Get all gists of user"""
 
+        print('Getting gists...')
         self.url = f'https://api.github.com/users/{self.username}/gists'
         self.get_data(all)
 
@@ -138,16 +141,17 @@ def main(name: str, folder: str = '') -> None:
         create_folder(folder)
 
     user = User(name)
-    user.get_repositories(f'{folder}README.md')
-    user.get_starred(f'{folder}STARRED.md')
+    user.get_repositories(f'{folder}README.md', all=True)
+    user.get_starred(f'{folder}STARRED.md', all=True)
+    # user.get_starred(f'{folder}STARRED.md')
     user.get_gists(f'{folder}GISTS.md')
 
 if __name__ == '__main__':
     from time import perf_counter
     name = 'ngntrgduc'
     tic = perf_counter()
-    
+
     main(name)
     # main(name, f'data/{name}/') # crawled result in a folder
-    
+
     print(f'Took {perf_counter() - tic:.2f}s to crawl for {name}')
