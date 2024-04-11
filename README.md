@@ -1,12 +1,13 @@
 | **Repository** | **Description** |
 | -------------- | --------------- |
-| **[projects](https://github.com/ngntrgduc/projects)**  | All my projects/starred/gists on GitHub. Crawled using GitHub API. |
 | **[math.hcmus-crawler](https://github.com/ngntrgduc/math.hcmus-crawler)**  | Crawl https://math.hcmus.edu.vn/ every day using GitHub Actions. Fork/watch this repo to see news updates. |
-| **[HCMUS-news-crawler](https://github.com/ngntrgduc/HCMUS-news-crawler)**  | Crawl https://hcmus.edu.vn/tin-tuc/ and http://ktdbcl.hcmus.edu.vn every day using GitHub Actions. Fork/watch this repo to see news updates. View the latest commit of the README.md file for a quick update. |
-| **[musyc-player](https://github.com/ngntrgduc/musyc-player)**  | Minimal Music player, built with Python + Flask |
-| **[github-stats](https://github.com/ngntrgduc/github-stats)**  | My GitHub stats, a fork from https://github.com/jstrieb/github-stats, with some customization |
-| **[docs](https://github.com/ngntrgduc/docs)**  | Just my documentation |
 | **[thong-bao-cup-nuoc-Thu-Duc](https://github.com/ngntrgduc/thong-bao-cup-nuoc-Thu-Duc)**  | Script được chạy mỗi ngày để crawl thông báo cúp nước từ https://www.capnuocthuduc.vn/tin-tuc/thong-bao-cup-nuoc/, phòng khi mọi người không biết tới sự tồn tại của cái trang này 🙂 |
+| **[HCMUS-news-crawler](https://github.com/ngntrgduc/HCMUS-news-crawler)**  | Crawl https://hcmus.edu.vn/tin-tuc/ and http://ktdbcl.hcmus.edu.vn every day using GitHub Actions. Fork/watch this repo to see news updates. View the latest commit of the README.md file for a quick update. |
+| **[github-stats](https://github.com/ngntrgduc/github-stats)**  | My GitHub stats, a fork from https://github.com/jstrieb/github-stats, with some customization |
+| **[my-HCMUS](https://github.com/ngntrgduc/my-HCMUS)**  | Coursework I completed during my studies at HCMUS, with some notes. To be updated. |
+| **[projects](https://github.com/ngntrgduc/projects)**  | All my projects/starred/gists on GitHub. Crawled using GitHub API. |
+| **[musyc-player](https://github.com/ngntrgduc/musyc-player)**  | Minimal Music player, built with Python + Flask |
+| **[docs](https://github.com/ngntrgduc/docs)**  | Just my documentation |
 | **[ngntrgduc.github.io](https://github.com/ngntrgduc/ngntrgduc.github.io)**  | My space, crafted with Hugo |
 | **[Multiple-links-loader](https://github.com/ngntrgduc/Multiple-links-loader)**  | Extension that open multiple links in a flash ⚡ |
 | **[Minimal-image-search](https://github.com/ngntrgduc/Minimal-image-search)**  | Minimal Firefox extension to search image painlessly. |
@@ -23,7 +24,6 @@
 | **[MTH10407-HCMUS](https://github.com/ngntrgduc/MTH10407-HCMUS)**  | Lập trình hướng đối tượng (OOP) |
 | **[arxiv-utils](https://github.com/ngntrgduc/arxiv-utils)** (*fork*) | Meaningful titles for tabs and PDF downloads! Also supports tab search. |
 | **[old-blog](https://github.com/ngntrgduc/old-blog)** (*fork*) |  |
-| **[MTH10450-HCMUS](https://github.com/ngntrgduc/MTH10450-HCMUS)**  | Nội dung kiểm tra môn Thuật toán tối ưu, được viết bằng Typst |
 | **[get-shit-done](https://github.com/ngntrgduc/get-shit-done)**  | No more procrastination |
 | **[visualimiss](https://github.com/ngntrgduc/visualimiss)**  | Small Python package to visualize missing data |
 | **[toy-with-iris](https://github.com/ngntrgduc/toy-with-iris)**  | Implementation of some classification algorithms for iris dataset |
