@@ -1,8 +1,12 @@
 import json
 import requests
+
 from pathlib import Path
 from dotenv import dotenv_values
+
 from utils import format_stars
+import logger
+
 
 class User:
     def __init__(self, username: str) -> None:
@@ -81,6 +85,8 @@ class User:
 
                 f.write(f'| **[{name}]({url})** {fork} | {description} |\n')
 
+        logger.info(f'Crawled repositories of {self.username}')
+
     def get_starred(self, file_name: str = 'STARRED.md',
                     all: bool = False) -> None:
         """Get starred repositories of user"""
@@ -107,6 +113,8 @@ class User:
 
                 f.write(f'| **[{name}]({url})** \| ⭐ *{stars}* | {description}\n')
 
+        logger.info(f'Crawled starred of {self.username}')
+
     def get_gists(self, file_name: str = 'GISTS.md',
                   all: bool = False) -> None:
         """Get all gists of user"""
@@ -129,6 +137,8 @@ class User:
                     description = ''
 
                 f.write(f'| **[{name}]({url})** | {description} |\n')
+
+        logger.info(f'Crawled gists of {self.username}')
 
 def create_folder(name: str) -> None:
     folder = Path(name)
@@ -154,4 +164,4 @@ if __name__ == '__main__':
     main(name)
     # main(name, f'data/{name}/') # crawled result in a folder
 
-    print(f'Took {perf_counter() - tic:.2f}s to crawl for {name}')
+    logger.info(f'Took {perf_counter() - tic:.2f}s to crawl for {name}')
