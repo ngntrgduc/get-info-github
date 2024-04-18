@@ -6,8 +6,6 @@ from pathlib import Path
 from dotenv import dotenv_values
 import fire
 
-from utils import format_stars
-
 
 class User:
     def __init__(self, username: str) -> None:
@@ -145,9 +143,16 @@ class User:
                 f.write(f'| **[{name}]({url})** | {description} |\n')
 
 def create_folder(name: str) -> None:
+    """Create folder if not existed"""
     folder = Path(name)
     if not folder.exists():
         folder.mkdir()
+
+def format_stars(number: int) -> int | str:
+    """Format number of stars"""
+    if number > 1000:
+        return f'{number/1000:.1f}K'
+    return number
 
 def main(
         name: str,  
