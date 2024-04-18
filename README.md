@@ -19,18 +19,18 @@ I often find myself being lost when visiting someone's repositories/stars. If th
     GITHUB_TOKEN = <your_token_here>    
     ```
 - If you want to ignore specific repositories: Create a `ignore.txt` file, and write the name of the repositories you want to ignore, separated by line.
-- For basic crawling:: 
-```python
-python main.py <github_username>
-```
+- For basic crawling:
+    ```python
+    python main.py <github_username>
+    ```
 - If the user has more than 100 repositories/starred/gists, you must pass flag `-a` or `--all` to get all of its:
-```python
-python main.py <github_username> -a
-```
+    ```python
+    python main.py <github_username> -a
+    ```
 
 - If you want the crawled results in a folder, pass `-f` or `--folder`:
-```python
-python main.py <github_username> -f
-```
+    ```python
+    python main.py <github_username> -f
+    ```
 
 For more information, visit: https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-repositories-for-a-user
