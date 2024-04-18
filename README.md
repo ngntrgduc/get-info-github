@@ -1,17 +1,17 @@
 | **Repository** | **Description** |
 | -------------- | --------------- |
-| **[math.hcmus-crawler](https://github.com/ngntrgduc/math.hcmus-crawler)**  | Crawl https://math.hcmus.edu.vn/ every day using GitHub Actions. Fork/watch this repo to see news updates. |
-| **[thong-bao-cup-nuoc-Thu-Duc](https://github.com/ngntrgduc/thong-bao-cup-nuoc-Thu-Duc)**  | Script được chạy mỗi ngày để crawl thông báo cúp nước từ https://www.capnuocthuduc.vn/tin-tuc/thong-bao-cup-nuoc/, phòng khi mọi người không biết tới sự tồn tại của cái trang này 🙂 |
+| **[math.hcmus-crawler](https://github.com/ngntrgduc/math.hcmus-crawler)**  | Crawl tin tức từ trang web của khoa Toán - Tin học https://math.hcmus.edu.vn/ mỗi ngày |
 | **[HCMUS-news-crawler](https://github.com/ngntrgduc/HCMUS-news-crawler)**  | Crawl https://hcmus.edu.vn/tin-tuc/ and http://ktdbcl.hcmus.edu.vn every day using GitHub Actions. Fork/watch this repo to see news updates. View the latest commit of the README.md file for a quick update. |
-| **[github-stats](https://github.com/ngntrgduc/github-stats)**  | My GitHub stats, a fork from https://github.com/jstrieb/github-stats, with some customization |
-| **[my-HCMUS](https://github.com/ngntrgduc/my-HCMUS)**  | Coursework I completed during my studies at HCMUS, with some notes. To be updated. |
+| **[thong-bao-cup-nuoc-Thu-Duc](https://github.com/ngntrgduc/thong-bao-cup-nuoc-Thu-Duc)**  | Script được chạy mỗi ngày để crawl thông báo cúp nước từ https://www.capnuocthuduc.vn/tin-tuc/thong-bao-cup-nuoc/, phòng khi mọi người không biết tới sự tồn tại của cái trang này 🙂 |
+| **[awesome-math](https://github.com/ngntrgduc/awesome-math)** (*fork*) | A curated list of awesome mathematics resources |
 | **[projects](https://github.com/ngntrgduc/projects)**  | All my projects/starred/gists on GitHub. Crawled using GitHub API. |
+| **[github-stats](https://github.com/ngntrgduc/github-stats)**  | My GitHub stats, a fork from https://github.com/jstrieb/github-stats, with some customization |
+| **[my-HCMUS](https://github.com/ngntrgduc/my-HCMUS)**  | Coursework I completed during my studies at HCMUS (2021-2025), with some stuff. To be updated. |
 | **[musyc-player](https://github.com/ngntrgduc/musyc-player)**  | Minimal Music player, built with Python + Flask |
 | **[docs](https://github.com/ngntrgduc/docs)**  | Just my documentation |
 | **[ngntrgduc.github.io](https://github.com/ngntrgduc/ngntrgduc.github.io)**  | My space, crafted with Hugo |
 | **[Multiple-links-loader](https://github.com/ngntrgduc/Multiple-links-loader)**  | Extension that open multiple links in a flash ⚡ |
 | **[Minimal-image-search](https://github.com/ngntrgduc/Minimal-image-search)**  | Minimal Firefox extension to search image painlessly. |
-| **[awesome-math](https://github.com/ngntrgduc/awesome-math)** (*fork*) | A curated list of awesome mathematics resources |
 | **[cv](https://github.com/ngntrgduc/cv)**  | My CV, written in Latex |
 | **[ocean-beamer-theme](https://github.com/ngntrgduc/ocean-beamer-theme)**  | Feel the ocean 🌊. Simple, minimalistic and customizable beamer theme. |
 | **[learning-python](https://github.com/ngntrgduc/learning-python)**  | Just my repo to learn python with colab |

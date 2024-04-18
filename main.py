@@ -1,8 +1,10 @@
 import json
 import requests
+from time import perf_counter
 
 from pathlib import Path
 from dotenv import dotenv_values
+import fire
 
 from utils import format_stars
 import logger
@@ -46,8 +48,10 @@ class User:
         with open(file_name, 'w', encoding='utf-8') as f:
             json.dump(self.data, f, indent=2)
 
-    def get_ignore(self, file_name: str = 'ignore.txt'):
+    def get_ignore(self, file_name: str = 'ignore.txt') -> list[str]:
         """Get ignore repo from file"""
+        if not Path(file_name).exists():
+            return []
 
         with open(file_name, 'r', encoding='utf-8') as f:
             ignore_repo = f.read().splitlines()
@@ -85,7 +89,7 @@ class User:
 
                 f.write(f'| **[{name}]({url})** {fork} | {description} |\n')
 
-        logger.info(f'Crawled repositories of {self.username}')
+        logger.info(f' - Crawled repositories')
 
     def get_starred(self, file_name: str = 'STARRED.md',
                     all: bool = False) -> None:
@@ -113,7 +117,7 @@ class User:
 
                 f.write(f'| **[{name}]({url})** \| ⭐ *{stars}* | {description}\n')
 
-        logger.info(f'Crawled starred of {self.username}')
+        logger.info(f' - Crawled starred')
 
     def get_gists(self, file_name: str = 'GISTS.md',
                   all: bool = False) -> None:
@@ -138,30 +142,35 @@ class User:
 
                 f.write(f'| **[{name}]({url})** | {description} |\n')
 
-        logger.info(f'Crawled gists of {self.username}')
+        logger.info(f' - Crawled gists')
 
 def create_folder(name: str) -> None:
     folder = Path(name)
     if not folder.exists():
         folder.mkdir()
 
-def main(name: str, folder: str = '') -> None:
+def main(name: str,  all: bool = False, folder: bool = False) -> None:
+
+    directory = ''
     if folder:
-        assert folder[-1] == '/', 'Folder name must include / at the end'
-        create_folder(folder)
+        # Chekc if the data folder is existed or not
+        # It's easier to manage crawled results in a folder
+        if not Path('data/').exists():
+            create_folder(f'data/')
 
-    user = User(name)
-    user.get_repositories(f'{folder}README.md', all=True)
-    user.get_starred(f'{folder}STARRED.md', all=True)
-    # user.get_starred(f'{folder}STARRED.md')
-    user.get_gists(f'{folder}GISTS.md')
+        directory = f'data/{name}/'
+        create_folder(directory)
 
-if __name__ == '__main__':
-    from time import perf_counter
-    name = 'ngntrgduc'
+    logger.info(f"Crawling for '{name}'")
     tic = perf_counter()
 
-    main(name)
-    # main(name, f'data/{name}/') # crawled result in a folder
+    user = User(name)
+    user.get_repositories(f'{directory}README.md', all=all)
+    user.get_starred(f'{directory}STARRED.md', all=all)
+    user.get_gists(f'{directory}GISTS.md')
 
-    logger.info(f'Took {perf_counter() - tic:.2f}s to crawl for {name}')
+    logger.info(f' - Took {perf_counter() - tic:.2f}s to crawl')
+
+
+if __name__ == '__main__':
+    fire.Fire(main)
