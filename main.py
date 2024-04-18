@@ -13,7 +13,7 @@ import logger
 class User:
     def __init__(self, username: str) -> None:
         self.username = username
-        self.url = f'https://api.github.com/users/{self.username}/repos'
+        self.url = ''
         TOKEN = dotenv_values('.env')['GITHUB_TOKEN']
         self.headers = {
             "Accept": "application/vnd.github+json",
@@ -30,13 +30,11 @@ class User:
         """Get data from GitHub API"""
 
         if not all:
-            self.data = requests.get(self.url, headers=self.headers,
-                                     params=self.params).json()
+            self.data = requests.get(self.url, headers=self.headers, params=self.params).json()
         else:
             self.data = []
             while True:
-                data = requests.get(self.url, headers=self.headers,
-                                    params=self.params).json()
+                data = requests.get(self.url, headers=self.headers, params=self.params).json()
                 if not data:
                     break
                 self.params['page'] += 1
@@ -58,15 +56,18 @@ class User:
 
         return ignore_repo
 
-    def get_repositories(self, file_name: str = 'README.md',
-                         ignore: bool = True, all: bool = False) -> None:
+    def get_repositories(
+            self, 
+            file_name: str = 'README.md',
+            all: bool = False
+        ) -> None:
         """Get repositories of user"""
 
         print('Getting repositories...')
-        self.get_data(all)
+        self.url = f'https://api.github.com/users/{self.username}/repos'
+        self.get_data(all)        
 
-        if ignore:
-            ignore_repo = self.get_ignore()
+        ignore_repos = self.get_ignore()
 
         with open(file_name, 'w', encoding='utf-8') as f:
             f.write('| **Repository** | **Description** |\n')
@@ -84,15 +85,18 @@ class User:
                 if not description:
                     description = ''
 
-                if name in ignore_repo:
+                if name in ignore_repos:
                     continue
 
                 f.write(f'| **[{name}]({url})** {fork} | {description} |\n')
 
         logger.info(f' - Crawled repositories')
 
-    def get_starred(self, file_name: str = 'STARRED.md',
-                    all: bool = False) -> None:
+    def get_starred(
+            self, 
+            file_name: str = 'STARRED.md',
+            all: bool = False
+        ) -> None:
         """Get starred repositories of user"""
 
         print('Getting starred...')
@@ -119,8 +123,11 @@ class User:
 
         logger.info(f' - Crawled starred')
 
-    def get_gists(self, file_name: str = 'GISTS.md',
-                  all: bool = False) -> None:
+    def get_gists(
+            self, 
+            file_name: str = 'GISTS.md',
+            all: bool = False
+        ) -> None:
         """Get all gists of user"""
 
         print('Getting gists...')
@@ -129,7 +136,7 @@ class User:
 
         with open(file_name, 'w', encoding='utf-8') as f:
             f.write('### My gists\n')
-            f.write('| **Gist name** | **Description** |\n')
+            f.write('| **Gist** | **Description** |\n')
             f.write('| ------------- | --------------- |\n')
 
             for i in range(len(self.data)):
@@ -149,7 +156,11 @@ def create_folder(name: str) -> None:
     if not folder.exists():
         folder.mkdir()
 
-def main(name: str,  all: bool = False, folder: bool = False) -> None:
+def main(
+        name: str,  
+        all: bool = False, 
+        folder: bool = False
+    ) -> None:
 
     directory = ''
     if folder:
@@ -167,7 +178,7 @@ def main(name: str,  all: bool = False, folder: bool = False) -> None:
     user = User(name)
     user.get_repositories(f'{directory}README.md', all=all)
     user.get_starred(f'{directory}STARRED.md', all=all)
-    user.get_gists(f'{directory}GISTS.md')
+    user.get_gists(f'{directory}GISTS.md', all=all)
 
     logger.info(f' - Took {perf_counter() - tic:.2f}s to crawl')
 
