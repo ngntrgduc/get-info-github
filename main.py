@@ -7,7 +7,6 @@ from dotenv import dotenv_values
 import fire
 
 from utils import format_stars
-import logger
 
 
 class User:
@@ -90,8 +89,6 @@ class User:
 
                 f.write(f'| **[{name}]({url})** {fork} | {description} |\n')
 
-        logger.info(f' - Crawled repositories')
-
     def get_starred(
             self, 
             file_name: str = 'STARRED.md',
@@ -121,8 +118,6 @@ class User:
 
                 f.write(f'| **[{name}]({url})** \| ⭐ *{stars}* | {description}\n')
 
-        logger.info(f' - Crawled starred')
-
     def get_gists(
             self, 
             file_name: str = 'GISTS.md',
@@ -149,8 +144,6 @@ class User:
 
                 f.write(f'| **[{name}]({url})** | {description} |\n')
 
-        logger.info(f' - Crawled gists')
-
 def create_folder(name: str) -> None:
     folder = Path(name)
     if not folder.exists():
@@ -172,7 +165,6 @@ def main(
         directory = f'data/{name}/'
         create_folder(directory)
 
-    logger.info(f"Crawling for '{name}'")
     tic = perf_counter()
 
     user = User(name)
@@ -180,7 +172,7 @@ def main(
     user.get_starred(f'{directory}STARRED.md', all=all)
     user.get_gists(f'{directory}GISTS.md', all=all)
 
-    logger.info(f' - Took {perf_counter() - tic:.2f}s to crawl')
+    print(f'Took {perf_counter() - tic:.2f}s to crawl for {name}')
 
 
 if __name__ == '__main__':
