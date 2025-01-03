@@ -22,11 +22,16 @@ class User:
             "per_page": 100,
             "page": 1,
         }
+        self.fetch_all = False
+    
+    def set_fetch_all(self): 
+        """Enable crawling all the results"""
+        self.fetch_all = True
 
-    def get_data(self, all: bool = False) -> None:
+    def get_data(self) -> None:
         """Get data from GitHub API"""
 
-        if not all:
+        if not self.fetch_all:
             self.data = requests.get(self.url, headers=self.headers, params=self.params).json()
         else:
             self.data = []
@@ -53,16 +58,12 @@ class User:
 
         return ignore_repo
 
-    def get_repositories(
-            self, 
-            file_name: str = 'README.md',
-            all: bool = False
-        ) -> None:
+    def get_repositories(self, file_name: str = 'README.md') -> None:
         """Get repositories of user"""
 
         print('Getting repositories...')
         self.url = f'https://api.github.com/users/{self.username}/repos'
-        self.get_data(all)        
+        self.get_data()        
 
         ignore_repos = self.get_ignore()
 
@@ -87,16 +88,12 @@ class User:
 
                 f.write(f'| **[{name}]({url})** {fork} | {description} |\n')
 
-    def get_starred(
-            self, 
-            file_name: str = 'STARRED.md',
-            all: bool = False
-        ) -> None:
+    def get_starred(self, file_name: str = 'STARRED.md') -> None:
         """Get starred repositories of user"""
 
         print('Getting starred...')
         self.url = f'https://api.github.com/users/{self.username}/starred'
-        self.get_data(all)
+        self.get_data()
 
         with open(file_name, 'w', encoding='utf-8') as f:
             f.write('### My starred repositories\n')
@@ -116,16 +113,12 @@ class User:
 
                 f.write(f'| **[{name}]({url})** \| ⭐ *{stars}* | {description}\n')
 
-    def get_gists(
-            self, 
-            file_name: str = 'GISTS.md',
-            all: bool = False
-        ) -> None:
+    def get_gists(self, file_name: str = 'GISTS.md') -> None:
         """Get all gists of user"""
 
         print('Getting gists...')
         self.url = f'https://api.github.com/users/{self.username}/gists'
-        self.get_data(all)
+        self.get_data()
 
         with open(file_name, 'w', encoding='utf-8') as f:
             f.write('### My gists\n')
@@ -162,8 +155,7 @@ def main(
 
     directory = ''
     if folder:
-        # Chekc if the data folder is existed or not
-        # It's easier to manage crawled results in a folder
+        # Ensure the data folder exists
         if not Path('data/').exists():
             create_folder(f'data/')
 
@@ -173,11 +165,14 @@ def main(
     tic = perf_counter()
 
     user = User(name)
-    user.get_repositories(f'{directory}README.md', all=all)
-    user.get_starred(f'{directory}STARRED.md', all=all)
-    user.get_gists(f'{directory}GISTS.md', all=all)
+    if all:
+        user.set_fetch_all()
 
-    print(f'Took {perf_counter() - tic:.2f}s to crawl for {name}')
+    user.get_repositories(f'{directory}README.md')
+    user.get_starred(f'{directory}STARRED.md')
+    user.get_gists(f'{directory}GISTS.md')
+
+    print(f'Took {perf_counter() - tic:.2f}s to crawl data for user: {name}')
 
 
 if __name__ == '__main__':
