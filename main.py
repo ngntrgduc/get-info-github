@@ -45,7 +45,7 @@ class User:
                 if not data:
                     break
                 self.params['page'] += 1
-                self.data.extend(data)
+                self.data += data
 
     def backup(self, file_name: str = 'result.json') -> None:
         """Write a backup to file"""
