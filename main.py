@@ -24,12 +24,17 @@ class User:
         }
         self.fetch_all = False
     
+    def reset_params(self) -> None:
+        self.params["page"] = 1
+
     def set_fetch_all(self): 
         """Enable crawling all the results"""
         self.fetch_all = True
 
     def get_data(self) -> None:
         """Get data from GitHub API"""
+        
+        self.reset_params()
 
         if not self.fetch_all:
             self.data = requests.get(self.url, headers=self.headers, params=self.params).json()
@@ -40,7 +45,7 @@ class User:
                 if not data:
                     break
                 self.params['page'] += 1
-                self.data += data
+                self.data.extend(data)
 
     def backup(self, file_name: str = 'result.json') -> None:
         """Write a backup to file"""
@@ -63,7 +68,8 @@ class User:
 
         print('Getting repositories...')
         self.url = f'https://api.github.com/users/{self.username}/repos'
-        self.get_data()        
+        self.get_data()
+        print(f' -> Number of repositories: {len(self.data)}')
 
         ignore_repos = self.get_ignore()
 
@@ -94,6 +100,7 @@ class User:
         print('Getting starred...')
         self.url = f'https://api.github.com/users/{self.username}/starred'
         self.get_data()
+        print(f' -> Number of starred: {len(self.data)}')
 
         with open(file_name, 'w', encoding='utf-8') as f:
             f.write('### My starred repositories\n')
@@ -119,6 +126,7 @@ class User:
         print('Getting gists...')
         self.url = f'https://api.github.com/users/{self.username}/gists'
         self.get_data()
+        print(f' -> Number of gists: {len(self.data)}')
 
         with open(file_name, 'w', encoding='utf-8') as f:
             f.write('### My gists\n')
