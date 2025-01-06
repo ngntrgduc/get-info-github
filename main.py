@@ -1,6 +1,6 @@
 import json
 import requests
-from time import perf_counter
+from time import perf_counter, sleep
 
 from pathlib import Path
 from dotenv import dotenv_values
@@ -23,6 +23,8 @@ class User:
             "page": 1,
         }
         self.fetch_all = False
+        self.session = requests.Session()
+        self.session.headers.update(self.headers)
     
     def reset_params(self) -> None:
         self.params["page"] = 1
@@ -37,15 +39,16 @@ class User:
         self.reset_params()
 
         if not self.fetch_all:
-            self.data = requests.get(self.url, headers=self.headers, params=self.params).json()
+            self.data = self.session.get(self.url, params=self.params).json()
         else:
             self.data = []
             while True:
-                data = requests.get(self.url, headers=self.headers, params=self.params).json()
+                data = self.session.get(self.url, params=self.params).json()
                 if not data:
                     break
                 self.params['page'] += 1
-                self.data += data
+                self.data.extend(data)
+                # sleep(0.2)
 
     def backup(self, file_name: str = 'result.json') -> None:
         """Write a backup to file"""
