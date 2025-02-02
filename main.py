@@ -146,6 +146,13 @@ class User:
 
                 f.write(f'| **[{name}]({url})** | {description} |\n')
 
+    def __enter__(self):
+        print(f'Crawling for user: {self.username}')
+        return self
+
+    def __exit__(self, exc_type, exc_value, exc_tb):
+        self.session.close()
+
 def create_folder(name: str) -> None:
     """Create folder if not existed"""
     folder = Path(name)
@@ -175,15 +182,15 @@ def main(
 
     tic = perf_counter()
 
-    user = User(name)
-    if all:
-        user.set_fetch_all()
+    with User(name) as user:
+        if all:
+            user.set_fetch_all()
 
-    user.get_repositories(f'{directory}README.md')
-    user.get_starred(f'{directory}STARRED.md')
-    user.get_gists(f'{directory}GISTS.md')
+        # user.get_repositories(f'{directory}README.md')
+        user.get_starred(f'{directory}STARRED.md')
+        # user.get_gists(f'{directory}GISTS.md')
 
-    print(f'Took {perf_counter() - tic:.2f}s to crawl data for user: {name}')
+    print(f'Took {perf_counter() - tic:.2f}s to crawl')
 
 
 if __name__ == '__main__':
