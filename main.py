@@ -186,9 +186,9 @@ def main(
         if all:
             user.set_fetch_all()
 
-        # user.get_repositories(f'{directory}README.md')
+        user.get_repositories(f'{directory}README.md')
         user.get_starred(f'{directory}STARRED.md')
-        # user.get_gists(f'{directory}GISTS.md')
+        user.get_gists(f'{directory}GISTS.md')
 
     print(f'Took {perf_counter() - tic:.2f}s to crawl')
 
