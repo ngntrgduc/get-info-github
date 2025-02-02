@@ -121,7 +121,7 @@ class User:
                 if not description:
                     description = ''
 
-                f.write(f'| **[{name}]({url})** \| ⭐ *{stars}* | {description}\n')
+                f.write(rf'| **[{name}]({url})** \| ⭐ *{stars}* | {description}\n')
 
     def get_gists(self, file_name: str = 'GISTS.md') -> None:
         """Get all gists of user"""
