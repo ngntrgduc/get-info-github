@@ -25,6 +25,13 @@ class User:
         self.fetch_all = False
         self.session = requests.Session()
         self.session.headers.update(self.headers)
+
+    def __enter__(self):
+        print(f'Crawling for user: {self.username}')
+        return self
+
+    def __exit__(self, exc_type, exc_value, exc_tb):
+        self.session.close()
     
     def reset_params(self) -> None:
         self.params["page"] = 1
@@ -132,12 +139,6 @@ class User:
 
                 f.write(f'| **[{name}]({url})** | {description} |\n')
 
-    def __enter__(self):
-        print(f'Crawling for user: {self.username}')
-        return self
-
-    def __exit__(self, exc_type, exc_value, exc_tb):
-        self.session.close()
 
 def create_folder(name: str) -> None:
     """Create folder if not existed"""
@@ -159,10 +160,7 @@ def main(
 
     directory = ''
     if folder:
-        # Ensure the data folder exists
-        if not Path('data/').exists():
-            create_folder(f'data/')
-
+        create_folder(f'data/')  # Ensure the data folder exists
         directory = f'data/{name}/'
         create_folder(directory)
 
