@@ -56,16 +56,6 @@ class User:
         with open(file_name, 'w', encoding='utf-8') as f:
             json.dump(self.data, f, indent=2)
 
-    def get_ignore(self, file_name: str = 'ignore.txt') -> list[str]:
-        """Get ignore repo from file"""
-        if not Path(file_name).exists():
-            return []
-
-        with open(file_name, 'r', encoding='utf-8') as f:
-            ignore_repo = f.read().splitlines()
-
-        return ignore_repo
-
     def get_repositories(self, file_name: str = 'README.md') -> None:
         """Get repositories of user"""
 
@@ -73,8 +63,6 @@ class User:
         self.url = f'https://api.github.com/users/{self.username}/repos'
         self.get_data()
         print(f' -> Number of repositories: {len(self.data)}')
-
-        ignore_repos = self.get_ignore()
 
         with open(file_name, 'w', encoding='utf-8') as f:
             f.write('| **Repository** | **Description** |\n')
@@ -91,9 +79,6 @@ class User:
                 fork = '(*fork*)' if fork else ''
                 if not description:
                     description = ''
-
-                if name in ignore_repos:
-                    continue
 
                 f.write(f'| **[{name}]({url})** {fork} | {description} |\n')
 

@@ -6,13 +6,13 @@ I often find myself being lost when visiting someone's repositories/stars. If th
 ### Features
 - Get all repositories, starred, gists
 - Crawled result to a folder if needed. It's easier to manage crawled results in a folder (Default will crawl to `data/<github-username>/`)
-- Ignore specific repositories in `ignore.txt`
 
 ## Todo
 - [ ] More arguments setting: 
     - [ ] --starred/-s for crawl only starred repo, also for repos and gists
     - [ ] --sort for sorting crawled result based on number of stars
-- [ ] Maybe switch to Click CLI library for more flexibility?
+    - [ ] Maybe switch to Click CLI library for more flexibility? -> FP style
+    - [ ] Handle multiple usernames -> reuse session for all users
 
 ### How to use?
 - Install requirements:
@@ -24,7 +24,6 @@ I often find myself being lost when visiting someone's repositories/stars. If th
     ```
     GITHUB_TOKEN = <your_token_here>    
     ```
-- If you want to ignore specific repositories: Create a `ignore.txt` file, and write the name of the repositories you want to ignore, separated by line.
 - For basic crawling (crawl first 100 repositories/starred/gists):
     ```python
     python main.py <github_username>
