@@ -68,13 +68,13 @@ class User:
             f.write('| **Repository** | **Description** |\n')
             f.write('| -------------- | --------------- |\n')
 
-            for i in range(len(self.data)):
-                name        = self.data[i]['name']
-                url         = self.data[i]['html_url']
-                description = self.data[i]['description']
-                fork        = self.data[i]['fork']
-                # stars       = self.data[i]['stargazers_count']
-                # language    = self.data[i]['language']
+            for data in self.data:
+                name        = data['name']
+                url         = data['html_url']
+                description = data['description']
+                fork        = data['fork']
+                # stars       = data['stargazers_count']
+                # language    = data['language']
 
                 fork = '(*fork*)' if fork else ''
                 if not description:
@@ -95,12 +95,12 @@ class User:
             f.write('| **Repository** | **Description** |\n')
             f.write('| -------------- | --------------- |\n')
 
-            for i in range(len(self.data)):
-                name        = self.data[i]['full_name']
-                url         = self.data[i]['html_url']
-                # language    = self.data[i]['language']
-                description = self.data[i]['description']
-                stars       = self.data[i]['stargazers_count']
+            for data in self.data:
+                name        = data['full_name']
+                url         = data['html_url']
+                # language    = data['language']
+                description = data['description']
+                stars       = data['stargazers_count']
                 stars       = format_stars(stars)
 
                 if not description:
@@ -122,10 +122,10 @@ class User:
             f.write('| **Gist** | **Description** |\n')
             f.write('| ------------- | --------------- |\n')
 
-            for i in range(len(self.data)):
-                name        = list(self.data[i]['files'])[0]
-                url         = self.data[i]['html_url']
-                description = self.data[i]['description']
+            for data in self.data:
+                name        = list(data['files'])[0]
+                url         = data['html_url']
+                description = data['description']
 
                 if not description:
                     description = ''
