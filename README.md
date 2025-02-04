@@ -32,5 +32,3 @@ I often find myself being lost when visiting someone's repositories/stars. If th
     ```python
     python main.py <github_username> -f
     ```
-
-For more information, visit: [GitHub GraphQL API docs](https://docs.github.com/en/graphql).
