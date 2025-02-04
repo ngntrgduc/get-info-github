@@ -1,6 +1,5 @@
-import json
 import requests
-from time import perf_counter, sleep
+from time import perf_counter
 
 from pathlib import Path
 from dotenv import dotenv_values
@@ -220,7 +219,7 @@ def main(
 
     directory = ''
     if folder:
-        create_folder(f'data/')  # Ensure the data folder exists
+        create_folder('data/')  # Ensure the data folder exists
         directory = f'data/{name}/'
         create_folder(directory)
 
