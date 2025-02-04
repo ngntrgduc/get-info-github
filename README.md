@@ -4,13 +4,13 @@
 I often find myself being lost when visiting someone's repositories/stars. If that user has more than 100 repositories/stars, then it will be very exhausted. So I made this to crawl all of it.
 
 ### Features
-- Get all repositories, starred, gists
-- Crawled result to a folder if needed. It's easier to manage crawled results in a folder (Default will crawl to `data/<github-username>/`)
+- Get all repositories, starred, gists using GitHub GraphQL API, ~~blazingly fast~~ 
+- Get crawled result to a folder if needed, easier to manage (default will store results in `data/<github_username>/`)
 
 ## Todo
 - [ ] More arguments setting: 
-    - [ ] --starred/-s for crawl only starred repo, also for repos and gists
-    - [ ] --sort for sorting crawled result based on number of stars
+    - [ ] --starred/-s for crawl only starred repo, also for repos (-r) and gists (-g)
+    - [ ] ~~--sort for sorting crawled result based on number of stars~~ -> Redundant
     - [ ] Maybe switch to Click CLI library for more flexibility? -> FP style
     - [ ] Handle multiple usernames -> reuse session for all users
 
@@ -24,18 +24,13 @@ I often find myself being lost when visiting someone's repositories/stars. If th
     ```
     GITHUB_TOKEN = <your_token_here>    
     ```
-- For basic crawling (crawl first 100 repositories/starred/gists):
+- For basic crawling (crawl all repositories/starred/gists given username):
     ```python
     python main.py <github_username>
     ```
-- If the user has more than 100 repositories/starred/gists, you must pass flag `-a` or `--all` to get all of its:
-    ```python
-    python main.py <github_username> -a
-    ```
-
 - If you want the crawled results in a folder, pass `-f` or `--folder`:
     ```python
     python main.py <github_username> -f
     ```
 
-For more information, visit: [GitHub REST API docs](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-repositories-for-a-user).
+For more information, visit: [GitHub GraphQL API docs](https://docs.github.com/en/graphql).

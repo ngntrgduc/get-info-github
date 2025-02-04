@@ -12,19 +12,12 @@ class User:
         self.username = username
         self.url = ''
         TOKEN = dotenv_values('.env')['GITHUB_TOKEN']
-        self.headers = {
-            "Accept": "application/vnd.github+json",
-            "Authorization": "Bearer " + TOKEN,
-            "X-GitHub-Api-Version": "2022-11-28",
-        }
-        self.params = {
-            "sort": "pushed",
-            "per_page": 100,
-            "page": 1,
-        }
-        self.fetch_all = False
+        self.headers = { "Authorization": "Bearer " + TOKEN }
         self.session = requests.Session()
         self.session.headers.update(self.headers)
+        self.repos = []
+        self.gists = []
+        self.starred = []
 
     def __enter__(self):
         print(f'Crawling for user: {self.username}')
@@ -32,30 +25,6 @@ class User:
 
     def __exit__(self, exc_type, exc_value, exc_tb):
         self.session.close()
-    
-    def reset_params(self) -> None:
-        self.params["page"] = 1
-
-    def set_fetch_all(self): 
-        """Enable crawling all the results"""
-        self.fetch_all = True
-
-    def get_data(self) -> None:
-        """Get data from GitHub API"""
-        
-        self.reset_params()
-
-        if not self.fetch_all:
-            self.data = self.session.get(self.url, params=self.params).json()
-        else:
-            self.data = []
-            while True:
-                data = self.session.get(self.url, params=self.params).json()
-                if not data:
-                    break
-                self.params['page'] += 1
-                self.data.extend(data)
-                # sleep(0.2)
 
     def backup(self, file_name: str = 'result.json') -> None:
         """Write a backup to file"""
@@ -63,79 +32,178 @@ class User:
         with open(file_name, 'w', encoding='utf-8') as f:
             json.dump(self.data, f, indent=2)
 
-    def get_repositories(self, file_name: str = 'README.md') -> None:
-        """Get repositories of user"""
+    def get_data(self) -> None:
+        """Get data of user using GitHub GraphQL API"""
 
-        print('Getting repositories...')
-        self.url = f'https://api.github.com/users/{self.username}/repos'
-        self.get_data()
-        print(f' -> Number of repositories: {len(self.data)}')
+        def format_cursor(cursor: str | None) -> str:
+            """Format cursor for GraphQL query"""
+            return "null" if cursor is None else f'"{cursor}"'
 
+        def fetch_pagination(data: dict, key: str, storage: list) -> tuple:
+            """Handle pagination"""
+            section = data.get(key, {})
+            storage.extend(section.get('nodes', []))
+            page_info = section.get('pageInfo', {})
+            return page_info.get('endCursor'), page_info.get('hasNextPage', False)
+
+        def generate_query(
+                repos_cursor, stars_cursor, gists_cursor, 
+                repos_active, stars_active, gists_active
+            ) -> str:
+            """Dynamically generates the GraphQL query based on active pagination states"""
+            first_limit = 100
+            repos_query = f"""
+                repositories(
+                    first: {first_limit},
+                    orderBy: {{
+                        field: PUSHED_AT,
+                        direction: DESC
+                    }},
+                    privacy: PUBLIC,
+                    ownerAffiliations: OWNER,
+                    after: {format_cursor(repos_cursor)},
+                ) {{
+                    nodes {{
+                        name
+                        description
+                        url
+                        isFork
+                    }}
+                    pageInfo {{
+                        endCursor
+                        hasNextPage
+                    }}
+                }}""" if repos_active else ''
+
+            starred_query = f"""
+                starredRepositories(
+                    first: {first_limit},
+                    orderBy: {{
+                        field: STARRED_AT,
+                        direction: DESC
+                    }},
+                    after: {format_cursor(stars_cursor)},
+                ) {{
+                    nodes {{
+                        nameWithOwner
+                        description
+                        url
+                        stargazerCount 
+                    }}
+                    pageInfo {{
+                        endCursor
+                        hasNextPage
+                    }}
+                }}""" if stars_active else ''
+
+            gists_query = f"""
+                gists(
+                    first: {first_limit},
+                    orderBy: {{
+                        field: UPDATED_AT,
+                        direction: DESC
+                    }},
+                    after: {format_cursor(gists_cursor)},
+                ) {{
+                    nodes {{
+                        files (limit: 1) {{
+                            name
+                        }}
+                        description
+                        url
+                    }} 
+                    pageInfo {{
+                        endCursor
+                        hasNextPage
+                    }}
+                }}""" if gists_active else ''
+        
+            return f"""{{ 
+                user(login: "{self.username}") {{ 
+                    {repos_query}
+                    {starred_query}
+                    {gists_query}
+                }}
+            }}"""
+
+        repos_cursor = gists_cursor = stars_cursor = None
+        repos_active = stars_active = gists_active = True
+
+        print('Getting data...')
+
+        while repos_active or stars_active or gists_active:
+            graphql_query = generate_query(
+                repos_cursor, stars_cursor, gists_cursor, 
+                repos_active, stars_active, gists_active
+            )
+            response = self.session.post(
+                'https://api.github.com/graphql', 
+                json={'query': graphql_query},
+                headers=self.headers
+            )
+            data = response.json()['data']['user']
+
+            if repos_active:
+                repos_cursor, repos_active = fetch_pagination(data, 'repositories', self.repos)
+
+            if stars_active:
+                stars_cursor, stars_active = fetch_pagination(data, 'starredRepositories', self.starred)
+
+            if gists_active:
+                gists_cursor, gists_active = fetch_pagination(data, 'gists', self.gists)
+        
+        print(f' - Number of repositories: {len(self.repos)}')
+        print(f' - Number of starred: {len(self.starred)}')
+        print(f' - Number of gists: {len(self.gists)}')
+        
+    def write_repositories(self, file_name: str = 'README.md') -> None:
+        """Write repositories to file"""
         with open(file_name, 'w', encoding='utf-8') as f:
+            f.write(f"### {self.username}'s repositories\n")
             f.write('| **Repository** | **Description** |\n')
             f.write('| -------------- | --------------- |\n')
 
-            for data in self.data:
-                name        = data['name']
-                url         = data['html_url']
-                description = data['description']
-                fork        = data['fork']
-                # stars       = data['stargazers_count']
-                # language    = data['language']
-
-                fork = '(*fork*)' if fork else ''
-                if not description:
-                    description = ''
+            for repo in self.repos:
+                name = repo['name']
+                url = repo['url']
+                fork = '(*fork*)' if repo['isFork'] else ''
+                description = repo['description'] or ''
 
                 f.write(f'| **[{name}]({url})** {fork} | {description} |\n')
 
-    def get_starred(self, file_name: str = 'STARRED.md') -> None:
-        """Get starred repositories of user"""
+    def write_starred(self, file_name: str = 'STARRED.md') -> None:
+        """Write starred repositories to file"""
 
-        print('Getting starred...')
-        self.url = f'https://api.github.com/users/{self.username}/starred'
-        self.get_data()
-        print(f' -> Number of starred: {len(self.data)}')
+        def format_stars(number: int) -> int | str:
+            """Format number of stars"""
+            return f'{number/1000:.1f}K' if number > 1000 else number
 
         with open(file_name, 'w', encoding='utf-8') as f:
-            f.write('### My starred repositories\n')
+            f.write(f"### {self.username}'s starred repositories\n")
             f.write('| **Repository** | **Description** |\n')
             f.write('| -------------- | --------------- |\n')
 
-            for data in self.data:
-                name        = data['full_name']
-                url         = data['html_url']
-                # language    = data['language']
-                description = data['description']
-                stars       = data['stargazers_count']
-                stars       = format_stars(stars)
-
-                if not description:
-                    description = ''
+            for repo in self.starred:
+                name = repo['nameWithOwner']
+                url = repo['url']
+                stars = format_stars(repo['stargazerCount'])
+                description = repo['description'] or ''
 
                 f.write(rf'| **[{name}]({url})** \| ⭐ *{stars}* | {description}')
                 f.write('\n')
 
-    def get_gists(self, file_name: str = 'GISTS.md') -> None:
-        """Get all gists of user"""
-
-        print('Getting gists...')
-        self.url = f'https://api.github.com/users/{self.username}/gists'
-        self.get_data()
-        print(f' -> Number of gists: {len(self.data)}')
+    def write_gists(self, file_name: str = 'GISTS.md') -> None:
+        """Write gists to file"""
 
         with open(file_name, 'w', encoding='utf-8') as f:
-            f.write('### My gists\n')
-            f.write('| **Gist** | **Description** |\n')
+            f.write(f"### {self.username}'s gists\n")
+            f.write('|    **Gist*    | **Description** |\n')
             f.write('| ------------- | --------------- |\n')
 
-            for data in self.data:
-                name        = list(data['files'])[0]
-                url         = data['html_url']
-                description = data['description']
-
-                if not description:
-                    description = ''
+            for gist in self.gists:
+                name = gist['files'][0]['name']
+                url = gist['url']
+                description = gist['description'] or ''
 
                 f.write(f'| **[{name}]({url})** | {description} |\n')
 
@@ -146,16 +214,9 @@ def create_folder(name: str) -> None:
     if not folder.exists():
         folder.mkdir()
 
-def format_stars(number: int) -> int | str:
-    """Format number of stars"""
-    if number > 1000:
-        return f'{number/1000:.1f}K'
-    return number
-
 def main(
-        name: str,  
-        all: bool = False, 
-        folder: bool = False
+        name: str,
+        folder: bool = False,
     ) -> None:
 
     directory = ''
@@ -167,12 +228,10 @@ def main(
     tic = perf_counter()
 
     with User(name) as user:
-        if all:
-            user.set_fetch_all()
-
-        user.get_repositories(f'{directory}README.md')
-        user.get_starred(f'{directory}STARRED.md')
-        user.get_gists(f'{directory}GISTS.md')
+        user.get_data()
+        user.write_repositories(f'{directory}README.md')
+        user.write_starred(f'{directory}STARRED.md')
+        user.write_gists(f'{directory}GISTS.md')
 
     print(f'Took {perf_counter() - tic:.2f}s to crawl')
 
