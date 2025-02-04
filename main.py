@@ -26,12 +26,6 @@ class User:
     def __exit__(self, exc_type, exc_value, exc_tb):
         self.session.close()
 
-    def backup(self, file_name: str = 'result.json') -> None:
-        """Write a backup to file"""
-
-        with open(file_name, 'w', encoding='utf-8') as f:
-            json.dump(self.data, f, indent=2)
-
     def get_data(self) -> None:
         """Get data of user using GitHub GraphQL API"""
 
