@@ -152,6 +152,8 @@ class User:
         
     def write_repositories(self, file_name: str = 'README.md') -> None:
         """Write repositories to file"""
+        if not self.repos:
+            return
         with open(file_name, 'w', encoding='utf-8') as f:
             f.write(f"### {self.username}'s repositories\n")
             f.write('| **Repository** | **Description** |\n')
@@ -167,7 +169,9 @@ class User:
 
     def write_starred(self, file_name: str = 'STARRED.md') -> None:
         """Write starred repositories to file"""
-
+        if not self.starred:
+            return
+        
         def format_stars(number: int) -> int | str:
             """Format number of stars"""
             return f'{number/1000:.1f}K' if number > 1000 else number
@@ -188,7 +192,8 @@ class User:
 
     def write_gists(self, file_name: str = 'GISTS.md') -> None:
         """Write gists to file"""
-
+        if not self.gists:
+            return
         with open(file_name, 'w', encoding='utf-8') as f:
             f.write(f"### {self.username}'s gists\n")
             f.write('|    **Gist*    | **Description** |\n')
