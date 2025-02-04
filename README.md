@@ -4,7 +4,7 @@
 I often find myself being lost when visiting someone's repositories/stars. If that user has more than 100 repositories/stars, then it will be very exhausted. So I made this to crawl all of it.
 
 ### Features
-- Get all repositories, starred, gists using GitHub GraphQL API, ~~blazingly fast~~ 
+- Get all repositories, starred, gists using GitHub GraphQL API
 - Get crawled result to a folder if needed, easier to manage (default will store results in `data/<github_username>/`)
 
 ## Todo
@@ -24,7 +24,7 @@ I often find myself being lost when visiting someone's repositories/stars. If th
     ```
     GITHUB_TOKEN = <your_token_here>    
     ```
-- For basic crawling (crawl all repositories/starred/gists given username):
+- For basic crawling (crawl all repositories/starred/gists):
     ```python
     python main.py <github_username>
     ```
