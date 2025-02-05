@@ -25,7 +25,7 @@ class User:
     def __exit__(self, exc_type, exc_value, exc_tb):
         self.session.close()
 
-    def get_data(self) -> None:
+    def get_data(self, repo: bool, star: bool, gist: bool) -> None:
         """Get data of user using GitHub GraphQL API"""
 
         def format_cursor(cursor: str | None) -> str:
@@ -122,7 +122,16 @@ class User:
         repos_cursor = gists_cursor = stars_cursor = None
         repos_active = stars_active = gists_active = True
 
-        print('Getting data...')
+        # If any of repo, star, or gist is True, deactivate corresponding states
+        # If all are False, keep active states unchanged
+        if any((repo, star, gist)):
+            repos_active &= repo
+            stars_active &= star
+            gists_active &= gist
+        
+        print(f"Getting data...")
+        
+        # return
 
         while repos_active or stars_active or gists_active:
             graphql_query = generate_query(
@@ -215,6 +224,9 @@ def create_folder(name: str) -> None:
 def main(
         name: str,
         folder: bool = False,
+        repo: bool = False,
+        star: bool = False,
+        gist: bool = False
     ) -> None:
 
     directory = ''
@@ -226,13 +238,12 @@ def main(
     tic = perf_counter()
 
     with User(name) as user:
-        user.get_data()
+        user.get_data(repo, star, gist)
         user.write_repositories(f'{directory}README.md')
         user.write_starred(f'{directory}STARRED.md')
         user.write_gists(f'{directory}GISTS.md')
 
     print(f'Took {perf_counter() - tic:.2f}s to crawl')
-
 
 if __name__ == '__main__':
     fire.Fire(main)
