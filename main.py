@@ -14,6 +14,7 @@ class User:
         self.headers = { "Authorization": "Bearer " + TOKEN }
         self.session = requests.Session()
         self.session.headers.update(self.headers)
+        self.data = {}
         self.repos = []
         self.gists = []
         self.starred = []
@@ -32,9 +33,9 @@ class User:
             """Format cursor for GraphQL query"""
             return "null" if cursor is None else f'"{cursor}"'
 
-        def fetch_pagination(data: dict, key: str, storage: list) -> tuple:
+        def fetch_pagination(key: str, storage: list) -> tuple:
             """Handle pagination"""
-            section = data.get(key, {})
+            section = self.data.get(key, {})
             storage.extend(section.get('nodes', []))
             page_info = section.get('pageInfo', {})
             return page_info.get('endCursor'), page_info.get('hasNextPage', False)
@@ -143,16 +144,16 @@ class User:
                 json={'query': graphql_query},
                 headers=self.headers
             )
-            data = response.json()['data']['user']
+            self.data = response.json()['data']['user']
 
             if repos_active:
-                repos_cursor, repos_active = fetch_pagination(data, 'repositories', self.repos)
+                repos_cursor, repos_active = fetch_pagination('repositories', self.repos)
 
             if stars_active:
-                stars_cursor, stars_active = fetch_pagination(data, 'starredRepositories', self.starred)
+                stars_cursor, stars_active = fetch_pagination('starredRepositories', self.starred)
 
             if gists_active:
-                gists_cursor, gists_active = fetch_pagination(data, 'gists', self.gists)
+                gists_cursor, gists_active = fetch_pagination('gists', self.gists)
         
         print(f' - Number of repositories: {len(self.repos)}')
         print(f' - Number of starred: {len(self.starred)}')
@@ -195,8 +196,7 @@ class User:
                 stars = format_stars(repo['stargazerCount'])
                 description = repo['description'] or ''
 
-                f.write(rf'| **[{name}]({url})** \| ⭐ *{stars}* | {description}')
-                f.write('\n')
+                f.write(f'| **[{name}]({url})** ⭐*{stars}* | {description}\n')
 
     def write_gists(self, file_name: str = 'GISTS.md') -> None:
         """Write gists to file"""
