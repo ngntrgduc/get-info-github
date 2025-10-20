@@ -6,7 +6,7 @@ I often find myself being lost when visiting someone's repositories/stars. If th
 ### Features
 - Get all user's public repositories, stars, gists using GitHub GraphQL API
 - Get crawled result to a folder if needed, easier to manage (default will store results in `data/<github_username>/`)
-- Selectively crawl repositories, starred, or gists using flag arguments (`-r`/`--repo`, `-s`/`--star`, `-g`/`--gist`)
+- Selectively crawl repositories, stars, or gists using flag arguments (`-r`/`--repo`, `-s`/`--star`, `-g`/`--gist`)
 
 ### How to use?
 - Install requirements:
@@ -18,7 +18,7 @@ I often find myself being lost when visiting someone's repositories/stars. If th
     ```
     GITHUB_TOKEN = <your_token_here>    
     ```
-- For basic crawling (crawl all repositories/starred/gists):
+- For basic crawling (crawl all repositories/stars/gists):
     ```python
     python main.py <github_username>
     ```
@@ -31,7 +31,7 @@ I often find myself being lost when visiting someone's repositories/stars. If th
         ```python
         python main.py <github_username> -r
         ```
-    - Crawl only starred:
+    - Crawl only stars:
         ```python
         python main.py <github_username> -s
         ```
@@ -43,9 +43,3 @@ I often find myself being lost when visiting someone's repositories/stars. If th
         ```python
         python main.py <github_username> -r -s
         ```
-### Todo
-- [x] More arguments setting: 
-    - [x] --starred/-s for crawl only starred repo, also for repos (-r) and gists (-g)
-    - [ ] ~~--sort for sorting crawled result based on number of stars~~ -> Redundant
-    - [ ] ~~Maybe switch to Click CLI library for more flexibility? -> FP style~~ -> Keep it simple, less overhead
-    - [ ] ~~Handle multiple usernames -> reuse session for all users~~ -> Redundant
