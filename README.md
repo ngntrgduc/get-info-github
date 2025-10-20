@@ -4,8 +4,8 @@
 I often find myself being lost when visiting someone's repositories/stars. If that user has more than 100 repositories/stars, then it will be very exhausting (by default, 30 repositories will be display each navigation). So I made this to crawl all of it.
 
 ### Features
-- Get all user's public repositories, stars, gists using GitHub GraphQL API
-- Get crawled result to a folder if needed, easier to manage (default will store results in `data/<github_username>/`)
+- Get all user's public repositories, stars, gists using GitHub GraphQL API, save as markdown files
+- Get crawled results to a folder if needed, easier to manage (default will store results in `data/<github_username>/`)
 - Selectively crawl repositories, stars, or gists using flag arguments (`-r`/`--repo`, `-s`/`--star`, `-g`/`--gist`)
 
 ### How to use?
@@ -27,7 +27,7 @@ I often find myself being lost when visiting someone's repositories/stars. If th
     python main.py <github_username> -f
     ```
 - Use flags to crawl specific data:
-    - Crawl only repositories:
+    - Crawl only repositories (save to `README.md` file):
         ```python
         python main.py <github_username> -r
         ```
